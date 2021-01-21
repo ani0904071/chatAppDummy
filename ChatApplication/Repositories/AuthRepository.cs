@@ -9,9 +9,9 @@ namespace ChatApplication.Repositories
 {
     public class AuthRepository : IAuthRepository
     {
-        private readonly BookStoreContext _context;
+        private readonly UserContext _context;
 
-        public AuthRepository(BookStoreContext context)
+        public AuthRepository(UserContext context)
         {
             _context = context;
         }
