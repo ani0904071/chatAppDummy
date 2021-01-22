@@ -14,7 +14,7 @@ using ChatApplication.Repositories;
 
 namespace ChatApplication.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
