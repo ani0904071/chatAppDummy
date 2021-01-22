@@ -31,6 +31,31 @@ CREATE TABLE [dbo].[TblUser](
 GO
 
 
+CREATE TABLE [dbo].[TblChatDetails](
+    [ChatID] [int] IDENTITY(1,1) NOT NULL,
+    [CreatedAt] [datetime] NOT NULL CONSTRAINT CreateTS_DF DEFAULT CURRENT_TIMESTAMP,
+    [FromUserID] [int] NOT NULL,
+    [ChatText] [text] NOT NULL,
+    [ToUserID] [int] NOT NULL
+ CONSTRAINT [PK_TblChatDetails] PRIMARY KEY CLUSTERED
+(
+    [ChatID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SELECT * from TblChatDetails;
+
+INSERT INTO TblChatDetails ( FromUserID, ChatText, ToUserID) VALUES ( 8, 'Animesh vai, tumi kemon aso?', 1 ) ;
+
+- insertChat
+- getChatWithSingleUser
+- getSingleUser
+
+
+INSERT INTO TblTblChatDetails (CreatedAt, FromUserID, ChatText, ToUserID) VALUES (CURRENT_TIMESTAMP, 1, 'Hi Rana vai', 8 ) ;
+
+
 ####### issues ########## 
 
 - https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver15
