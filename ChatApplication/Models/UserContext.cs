@@ -20,6 +20,7 @@ namespace ChatApplication.Models
         }
 
         public virtual DbSet<TblUser> TblUser { get; set; }
+        public virtual DbSet<TblChatDetails> TblChatDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -50,6 +51,27 @@ namespace ChatApplication.Models
                 entity.Property(e => e.LastName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+            });
+
+            modelBuilder.Entity<TblChatDetails>(entity =>
+            {
+                entity.HasKey(e => e.ChatId);
+
+                entity.Property(e => e.ChatId).HasColumnName("ChatID");
+
+                entity.Property(e => e.CreatedAt);
+                entity.Property(e => e.FromUserId);
+
+                entity.Property(e => e.ChatText)
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ToUserId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                ;
 
             });
         }

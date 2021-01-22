@@ -48,6 +48,7 @@ namespace ChatApplication
 
             services.AddAutoMapper();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IChatDetailsRepository, ChatDetailsRepository>();
 
         }
 
