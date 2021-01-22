@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from './book/book';
+import { User } from './user/user';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -7,17 +7,17 @@ import { catchError, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class BookService {
+export class UserService {
 
-  apiUrl = 'http://192.168.0.103:5000/api/Book';
+  apiUrl = 'http://192.168.0.103:5000/api/User';
 
   constructor(private http: HttpClient) { }
 
-  getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.apiUrl)
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.apiUrl)
       .pipe(
-        tap(_ => this.log('fetched books')),
-        catchError(this.handleError('getBooks', []))
+        tap(_ => this.log('fetched users')),
+        catchError(this.handleError('getUsers', []))
       );
   }
 

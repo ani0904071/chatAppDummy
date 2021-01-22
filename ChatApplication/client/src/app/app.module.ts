@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BookComponent } from './book/book.component';
+import { UserComponent } from './user/user.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
@@ -26,7 +26,7 @@ import {
 @NgModule({
   declarations: [
     AppComponent,
-    BookComponent,
+    UserComponent,
     LoginComponent,
     RegisterComponent
   ],
