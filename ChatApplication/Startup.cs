@@ -21,6 +21,7 @@ namespace ChatApplication
 {
     public class Startup
     {
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,7 +34,6 @@ namespace ChatApplication
         {
             services.AddControllers();
             services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SQLConnection")));
-            services.AddCors();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters()
@@ -59,6 +59,8 @@ namespace ChatApplication
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -68,7 +70,7 @@ namespace ChatApplication
                 endpoints.MapControllers();
             });
 
-            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            
             app.UseAuthentication();
         }
     }

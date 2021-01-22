@@ -16,9 +16,9 @@ namespace ChatApplication.Dtos
         [Required]
         [StringLength(50, MinimumLength = 5, ErrorMessage = "Email must be at least 5 characters")]
         public string Email { get; set; }
+
         [Required]
-        
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "FirstName must be at least 3 characters")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "LastName must be at least 3 characters")]
         public string LastName { get; set; }
     }
 }
