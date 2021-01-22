@@ -44,5 +44,13 @@ namespace ChatApplication.Controllers
             return StatusCode(201, new { id = sentText.ChatId, sentAt = sentText.CreatedAt,  chatMessage = sentText.ChatText, to = sentText.ToUserId });
         }
 
+        [HttpGet]
+        [Route("RerieveTexts/{fromUserID:int}/{toUserID:int}")]
+        public async Task<IActionResult> RerieveChats(int fromUserID, int toUserID)
+        {
+            var result = await _context.TblChatDetails.FromSqlRaw("SELECT * from TblChatDetails WHERE FromUserID = {0} AND ToUserID = {1} ", fromUserID, toUserID).ToListAsync();
+            return Ok(result);
+        }
+
     }
 }
