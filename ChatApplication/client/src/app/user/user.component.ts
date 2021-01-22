@@ -40,4 +40,8 @@ export class UserComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  openChatHead(userId) {
+    console.log('user:', userId);
+  }
+
 }

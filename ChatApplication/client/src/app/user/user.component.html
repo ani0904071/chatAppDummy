@@ -30,7 +30,7 @@
         <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell *matCellDef="let row">{{row.email}}</td>
+          <td mat-cell *matCellDef="let row"> <a (click) = "openChatHead(row.userId)" style="color: wheat"> {{row.email}}</a>  </td>
         </ng-container>
   
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
