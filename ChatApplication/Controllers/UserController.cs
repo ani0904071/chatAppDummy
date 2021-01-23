@@ -16,7 +16,7 @@ using ChatApplication.Helpers;
 
 namespace ChatApplication.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -75,9 +75,30 @@ namespace ChatApplication.Controllers
 
         }
 
+        [HttpPost("DeleteTexts")]
+        public async Task<IActionResult> DeleteTexts(DeleteChatsDto deleteChatsDto)
+        {
+
+            var chatIds = string.Join("', '", deleteChatsDto.ChatIDs);
+
+            Console.WriteLine(chatIds);
+
+            try {
+                await _context.TblChatDetails
+                                .FromSqlRaw("DELETE from TblChatDetails where FromUserId = {0} AND ChatID IN (" + "'{1}')", deleteChatsDto.FromUserId, chatIds)
+                                .ToListAsync();
+            } catch (Exception ex)
+            {
+                Console.WriteLine("Delete exception: " + ex.Message);
+            }
+
+            return Ok("Deleted");
+        }
+
 
     }
-            
+
+
 
 
 }
