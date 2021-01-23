@@ -12,6 +12,7 @@ using ChatApplication.Repositories;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using ChatApplication.Helpers;
 
 namespace ChatApplication.Controllers
 {
@@ -42,6 +43,8 @@ namespace ChatApplication.Controllers
         {
             var textToCreate = _mapper.Map<TblChatDetails>(chatDetailsDto);
             textToCreate.CreatedAt = DateTime.Now;
+            textToCreate.ChatText = EncryptionHelper.EncryptString(chatDetailsDto.ChatText);
+
             var sentText = await _chatRepo.sendText(textToCreate);
 
             return StatusCode(201, new { id = sentText.ChatId, sentAt = sentText.CreatedAt, chatMessage = sentText.ChatText, to = sentText.ToUserId });
@@ -62,7 +65,7 @@ namespace ChatApplication.Controllers
                              textId = ct.ChatId,
                              senderId = u1.UserId,
                              sentBy = u1.FirstName,
-                             textMessage = ct.ChatText,
+                             textMessage = EncryptionHelper.DecryptString(ct.ChatText),
                              sentAt = ct.CreatedAt,
                              receiverId = u2.UserId,
                              receivedBy = u2.FirstName
