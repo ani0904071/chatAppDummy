@@ -1,4 +1,4 @@
-# Wezp app
+# Chat App (test)
 
 ## Table of contents
 
